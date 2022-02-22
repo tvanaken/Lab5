@@ -1,5 +1,7 @@
 package edu.unca.csci202;
 
+import java.util.NoSuchElementException;
+
 /**
  * implementation of linked double-ended queue
  * uses dummy (aka sentinel) nodes at head and tail
@@ -45,11 +47,18 @@ public class LinkedDeque<E> implements Deque<E> {
     
     public E removeFirst() {
     	
+    	try {
+    		
+    		if (isEmpty()) {
+    			throw new NoSuchElementException();
+    		}
+    	} catch (NoSuchElementException e) {
+    		return null;
+    	}
     	DNode<E> first = head.getNext();
     	DNode<E> second = first.getNext();
     	head.setNext(second);
     	second.setPrevious(head);
-    	
         return first.getData();
     }
     
@@ -61,11 +70,16 @@ public class LinkedDeque<E> implements Deque<E> {
     public boolean removeFirstOccurrence(E element) {
     	
     	DNode<E> current = head.getNext();
-    	for (int i = 0; current != tail; i++) {
+    	while (current != tail) {
     		if (current.getData() == element) {
+    			DNode<E> previous = current.getPrevious();
+    			DNode<E> next = current.getNext();
     			
-    			
+    			previous.setNext(next);
+    			next.setPrevious(previous);
     			return true;
+    		} else {
+    			current = current.getNext();
     		}
     	}
     		
@@ -88,6 +102,13 @@ public class LinkedDeque<E> implements Deque<E> {
     
     public E removeLast() {
     	
+    	try {
+    		if (isEmpty()) {
+    			throw new NoSuchElementException();
+    		}
+    	} catch (NoSuchElementException e) {
+    		return null;
+    	}
     	DNode<E> last = tail.getPrevious();
     	DNode<E> secondLast = last.getPrevious();
     	tail.setPrevious(secondLast);
@@ -102,6 +123,21 @@ public class LinkedDeque<E> implements Deque<E> {
     }
     
     public boolean removeLastOccurrence(E element) {
+    	
+    	DNode<E> current = tail.getPrevious();
+    	while (current != head) {
+    		if (current.getData() == element) {
+    			DNode<E> next = current.getNext();
+    			DNode<E> previous = current.getPrevious();
+    			next.setPrevious(previous);
+    			previous.setNext(next);
+    			
+    			return true;
+    		} else {
+    			current = current.getPrevious();
+    		}
+    	}
+    		
         return false;
     }
     
