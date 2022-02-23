@@ -15,7 +15,6 @@ public class Main {
 		q.addFirst(9);
 		q.addFirst(4);
 		q.addLast(7);
-		q.clear();
 		System.out.println("Removed " + q.removeFirst());
 		System.out.println("Get first: " + q.getFirst());
 		System.out.println("Removed " + q.removeLast());

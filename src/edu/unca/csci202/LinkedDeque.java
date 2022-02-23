@@ -30,7 +30,11 @@ public class LinkedDeque<E> implements Deque<E> {
         tail.setPrevious(head);
     }
     
-    // IMPLEMENT THESE METHODS
+    /**
+     * Adds a new element to the head of this deque and reassigns the
+     * pointers for next and previous on surrounding nodes.
+     * @param element the element to insert at the head of this deque
+     */
     public void addFirst(E element) {
     	
     	DNode<E> newNode = new DNode<E>(element);
@@ -45,6 +49,12 @@ public class LinkedDeque<E> implements Deque<E> {
 		first.setPrevious(newNode);
     }
     
+    /**
+     * Removes and returns the head element of this deque and reassigns the
+     * pointers for next and previous on surrounding nodes.
+     * @return the first element of this deque
+     * @throws NoSuchElementException if this deque is empty
+    */
     public E removeFirst() {
     	
     	try {
@@ -62,11 +72,28 @@ public class LinkedDeque<E> implements Deque<E> {
         return first.getData();
     }
     
+    /**
+     * @return the first element of this deque.
+     * @throws NoSuchElementException if this deque is empty.
+    */
     public E getFirst() {
     	
+    	try {
+	    	if (isEmpty()) {
+	    		throw new NoSuchElementException();
+	    	}
+    	} catch (NoSuchElementException e) {
+    		return null;
+    	}
         return head.getNext().getData();
     }
     
+    /**
+     * Traverses the deque from head to tail, then removes the 
+     * first occurrence of a value in the deque.
+     * @param element the value to be removed from this deque.
+     * @return true if an object is removed
+    */
     public boolean removeFirstOccurrence(E element) {
     	
     	DNode<E> current = head.getNext();
@@ -86,6 +113,11 @@ public class LinkedDeque<E> implements Deque<E> {
         return false;
     }
     
+    /**
+     * Adds a new element to the tail of this deque and reassigns the
+     * pointers for next and previous on surrounding nodes.
+     * @param element the element to insert at the tail of this deque
+    */
     public void addLast(E element) {
     	
     	DNode<E> newNode = new DNode<E>(element);
@@ -100,6 +132,12 @@ public class LinkedDeque<E> implements Deque<E> {
 		last.setNext(newNode);
     }
     
+    /**
+     * Removes and returns the tail element of this deque and reassigns the
+     * pointers for next and previous on surrounding nodes.
+     * @return the tail element of this deque
+     * @throws NoSuchElementException if this deque is empty
+    */
     public E removeLast() {
     	
     	try {
@@ -117,11 +155,28 @@ public class LinkedDeque<E> implements Deque<E> {
         return last.getData();
     }
     
+    /**
+     * @return the last element of this deque
+     * @throws NoSuchElementException if this deque is empty
+    */
     public E getLast() {
     	
+    	try {
+	    	if (isEmpty()) {
+	    		throw new NoSuchElementException();
+	    	}
+    	} catch (NoSuchElementException e) {
+    		return null;
+    	}
         return tail.getPrevious().getData();
     }
     
+    /**
+     * Traverses the deque from tail to head, then removes the 
+     * first occurrence of a value in the reverse deque.
+     * @param element the value to be removed from this deque.
+     * @return true if the given object is removed
+    */
     public boolean removeLastOccurrence(E element) {
     	
     	DNode<E> current = tail.getPrevious();
