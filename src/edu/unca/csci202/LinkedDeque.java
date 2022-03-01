@@ -98,7 +98,7 @@ public class LinkedDeque<E> implements Deque<E> {
     	
     	DNode<E> current = head.getNext();
     	while (current != tail) {
-    		if (current.getData() == element) {
+    		if (current.getData().equals(element)) {
     			DNode<E> previous = current.getPrevious();
     			DNode<E> next = current.getNext();
     			
@@ -181,7 +181,7 @@ public class LinkedDeque<E> implements Deque<E> {
     	
     	DNode<E> current = tail.getPrevious();
     	while (current != head) {
-    		if (current.getData() == element) {
+    		if (current.getData().equals(element)) {
     			DNode<E> next = current.getNext();
     			DNode<E> previous = current.getPrevious();
     			next.setPrevious(previous);
