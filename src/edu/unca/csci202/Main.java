@@ -4,11 +4,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		LinkedDeque<Integer> q = new LinkedDeque<Integer>();
+		LinkedDeque<String> q = new LinkedDeque<String>();
 		
-		q.addFirst(2);
-		q.addLast(3);
-		q.addFirst(1);
+		q.addFirst("Two");
+		q.addLast("Three");
+		q.addFirst("One");
 		q.printForward();
 //		System.out.println("Removed " + q.removeFirst());
 //		q.printForward();
@@ -18,9 +18,10 @@ public class Main {
 //		q.printForward();
 //		System.out.println("Get last: " + q.getLast());
 //		q.printForward();
-		System.out.println("removeFirstOccurence removed: " + q.removeFirstOccurrence(2));
+		System.out.println("removeFirstOccurence removed: " + q.removeFirstOccurrence("Two"));
 		q.printForward();
 		System.out.println(q.getFirst());
+		System.out.println(q.getLast());
 //		System.out.println("removeLastOccurence removed: " + q.removeLastOccurrence("Eigth"));
 //		q.printForward();
 	}
